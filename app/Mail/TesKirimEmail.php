@@ -32,7 +32,7 @@ class TesKirimEmail extends Mailable
             text: [
                 'X-SMTPAPI' => [
                     'unique_args' => [
-                        'identitas_pengguna' => 'testing_infra'
+                        'identitas_pengguna' => env('SENDGRID_IDENTITAS_PENGGUNA')
                     ]
                 ],
             ],
