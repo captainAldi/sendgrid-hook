@@ -58,7 +58,7 @@ class TesKirimEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.TesKirimEmail',
+            view: 'emails.tes-kirim',
         );
     }
 

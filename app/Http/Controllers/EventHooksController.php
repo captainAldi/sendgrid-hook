@@ -55,7 +55,7 @@ class EventHooksController extends Controller
         $array_events = json_decode($data_events, true);
 
         foreach ($array_events as $key => $value) {
-            Log::info("foreach event ke - " + (string)$key);
+            Log::info("foreach event ke");
             Log::info($value);
         }        
         
