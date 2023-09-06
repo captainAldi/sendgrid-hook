@@ -28,13 +28,16 @@ class TesKirimEmail extends Mailable
      */
     public function headers(): Headers
     {
+        $custom_headers = [
+            'unique_args' => [
+                'identitas_pengguna' => env('SENDGRID_IDENTITAS_PENGGUNA')
+            ]
+        ]; 
+        $x_header = json_encode($custom_headers);
+
         return new Headers(
             text: [
-                'X-SMTPAPI' => [
-                    'unique_args' => [
-                        'identitas_pengguna' => env('SENDGRID_IDENTITAS_PENGGUNA')
-                    ]
-                ],
+                'X-SMTPAPI' => $x_header
             ],
         );
     }
