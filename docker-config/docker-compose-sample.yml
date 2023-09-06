@@ -1,0 +1,51 @@
+version: "3.7"
+services:
+  sendgrid-hook-db:
+    image: mariadb:10.6
+    container_name: sendgrid-hook-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: " "
+      MYSQL_DATABASE: " "
+      MYSQL_USER: " "
+      MYSQL_PASSWORD: " "
+    networks:
+      - sendgrid-hook
+    volumes:
+    - 'sendgrid-hook-db-data:/var/lib/mysql'
+
+  sendgrid-hook-adminer:
+    image: adminer
+    container_name: sendgrid-hook-adminer
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    networks:
+      - sendgrid-hook
+  
+  sendgrid-hook-be:
+    image: harbor.bsa.id/infra/sendgrid-hook:v0.0.1
+    container_name: sendgrid-hook-be
+    restart: unless-stopped
+    environment:
+      APP_KEY: " "
+      DB_HOST: "sendgrid-hook-db"
+      DB_DATABASE: " "
+      DB_USERNAME: " "
+      DB_PASSWORD: " "
+      DB_TIMEZONE: "+07:00"
+    ports:
+      - 5000:80
+    networks:
+      - sendgrid-hook
+    volumes:
+      - ./data/sa.json:/var/www/html/storage/app/xxxx.json
+    depends_on:
+      - sendgrid-hook-db
+
+networks:
+  sendgrid-hook:
+    driver: bridge
+
+volumes:
+  sendgrid-hook-db-data:
