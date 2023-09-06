@@ -34,6 +34,7 @@ services:
       DB_USERNAME: " "
       DB_PASSWORD: " "
       DB_TIMEZONE: "+07:00"
+      SENDGRID_WEBHOOK_PUBLIC_KEY: ""
     ports:
       - 5000:80
     networks:
