@@ -36,7 +36,7 @@ class EventHooksController extends Controller
         // Cek signature
         $eventWebhook = new EventWebhook();
         $ecPublicKey = $eventWebhook->convertPublicKeyToECDSA(env('SENDGRID_WEBHOOK_PUBLIC_KEY'));
-        $data_events = $request->all();
+        $data_events = $request->getContent();
 
         $verifiedSignature = $eventWebhook->verifySignature(
                                     $ecPublicKey,
