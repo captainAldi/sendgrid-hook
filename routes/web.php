@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::post('/hooks/v2rn6jd2zzj2tcEaLPGZtjgzgLMzrxqwtp3Ju9EruJIMCMePsYn3hqYVPQczFV9w', [App\Http\Controllers\EventHooksController::class, 'handle_hook']);
+Route::get('/hooks/k2rn6jd2/coba-kirim', [App\Http\Controllers\EventHooksController::class, 'test_kirim_email']);
