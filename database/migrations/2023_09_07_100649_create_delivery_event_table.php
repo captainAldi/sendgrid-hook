@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('delivery_event', function (Blueprint $table) {
             $table->id();
             $table->string('sender_identity')->nullable();
+            $table->string('message_id');
             $table->string("email_to");
-            $table->enum('event', ['Dropped', 'Delivered', 'Deferred', 'Bounce', 'Blocked']);
+            $table->enum('event', ['processed, dropped', 'delivered', 'deferred', 'bounce', 'blocked']);
             $table->timestamp('timestamp', $precision = 0);
             $table->string('reason')->nullable();
             $table->string('response')->nullable();
