@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamp('timestamp', $precision = 0);
             $table->string('reason')->nullable();
             $table->string('response')->nullable();
-            $table->int('attempt')->nullable();
+            $table->integer('attempt')->nullable();
             $table->string('type')->nullable();
             $table->timestamps();
         });
