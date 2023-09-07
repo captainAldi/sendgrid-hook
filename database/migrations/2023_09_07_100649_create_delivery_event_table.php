@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('delivery_event', function (Blueprint $table) {
             $table->id();
-            $table->string('sender_identity');
+            $table->string('sender_identity')->nullable();
             $table->string("email_to");
             $table->enum('event', ['Dropped', 'Delivered', 'Deferred', 'Bounce', 'Blocked']);
             $table->timestamp('timestamp', $precision = 0);

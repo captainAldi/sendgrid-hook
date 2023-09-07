@@ -66,7 +66,7 @@ class EventHooksController extends Controller
 
                 // Prepare Data
                 $data_to_save       = new DeliveryEvent();
-                $data_to_save->sender_identity = $value['identitas_pengguna'];
+                $data_to_save->sender_identity = $value['identitas_pengguna'] ?? null;
                 $data_to_save->email_to = $value['email'];
                 $data_to_save->event = $value['event'];
                 $data_to_save->timestamp = $value['timestamp'];
