@@ -10,6 +10,7 @@ use SendGrid\EventWebhook\EventWebhookHeader;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TesKirimEmail;
+use App\Models\DeliveryEvent;
 
 class EventHooksController extends Controller
 {
@@ -55,8 +56,43 @@ class EventHooksController extends Controller
         $array_events = json_decode($data_events, true);
 
         foreach ($array_events as $key => $value) {
-            Log::info("foreach event ke");
-            Log::info($value);
+            Log::info("Proses Simpan Data: " . $value['sg_message_id']);
+
+            // Proses Simpan ke DB
+            DB::beginTransaction();
+
+            try {
+
+                // Prepare Data
+                $data_to_save       = new DeliveryEvent();
+                $data_to_save->sender_identity = $value['identitas_pengguna'];
+                $data_to_save->email_to = $value['email'];
+                $data_to_save->event = $value['event'];
+                $data_to_save->timestamp = $value['timestamp'];
+
+                $data_to_save->reason = $value['reason'] ?? null;
+                $data_to_save->response = $value['response'] ?? null;
+                $data_to_save->attempt = $value['attempt'] ?? null;
+                $data_to_save->type = $value['type'] ?? null;
+
+                // Keep Data
+                $data_to_save->save();
+                
+                // Jika Semua Normal, Commit ke DB
+                DB::commit(); 
+
+                Log::info("Berhasil Simpan Data: " . $value['sg_message_id']);
+
+            } catch (\Exception $e) {
+
+                // Jika ada yang Gagal, Rollback DB
+                DB::rollBack();
+
+                Log::error('ERROR - Event Delivery - Save ', (array)$e->getMessage());
+
+            }
+
+
         }        
         
     }
