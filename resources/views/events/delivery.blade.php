@@ -49,7 +49,7 @@
                 <select name="cari_sender_identity" class="form-control select2bs4">
                   <option value="">Pilih Opsi</option> 
                   @foreach ($data_sender_identity as $sender)
-                    <option value="{{ $sender->id }}" {{ $cari_sender_identity == $sender->id ? 'selected' : '' }}>{{ $sender->kode }}</option>
+                    <option value="{{ $sender->kode }}" {{ $cari_sender_identity == $sender->kode ? 'selected' : '' }}>{{ $sender->kode }}</option>
                   @endforeach
                 </select>
               </div>
