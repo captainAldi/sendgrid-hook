@@ -84,7 +84,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Brand Logo -->
       <a href="{{ route('home') }}" class="brand-link">
         <img src="{{ asset('img/logo-sidebar.png') }}" alt="Logo" class="brand-image elevation-3">
-        <span class="brand-text font-weight-light">Server Report</span>
+        <span class="brand-text font-weight-light">Sendgrid Hook</span>
       </a>
 
     <!-- Sidebar -->
