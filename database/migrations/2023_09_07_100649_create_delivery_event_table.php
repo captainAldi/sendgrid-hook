@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('sender_identity')->nullable();
             $table->string('message_id');
             $table->string("email_to");
-            $table->enum('event', ['processed, dropped', 'delivered', 'deferred', 'bounce', 'blocked']);
+            $table->enum('event', ['processed', 'dropped', 'delivered', 'deferred', 'bounce', 'blocked']);
             $table->timestamp('timestamp', $precision = 0);
             $table->string('reason')->nullable();
             $table->string('response')->nullable();

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('sender_identity', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->longText('keterangan');
+            $table->string('kode');
+            $table->longText('deskripsi');
             $table->timestamps();
         });
     }
